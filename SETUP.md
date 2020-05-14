@@ -19,7 +19,12 @@ to generate vocabulary according to the paper run
 python generate_vocab.py -i /PATH/TO/FILE/new_python100k_train.json -o /PATH/TO/OUTPUT/FILE/new_python100k_train.pkl -t ast
 ```
 ## Step 5
-to generate data according to the paper run
+to generate data according to the README.md
 ```
-python models/dfs_ud/dataset.py -a /PATH/TO/FILE/new_python100k_train.json -o /PATH/TO/OUTPUT/FILE/new_new_python100k_train.txt
+python -m models.dfs_ud.dataset -a /PATH/TO/FILE/new_python100k_train.json -o /PATH/TO/OUTPUT/FILE/new_new_python100k_train.txt
+```
+# Step 6
+to generate ast ids according to the README.md
+```
+python -m models.dfs.generate_ast_ids -a /PATH/TO/FILE/new_python100k_train.json -o /PATH/TO/OUTPUT/FILE/generated_ids.txt all
 ```
