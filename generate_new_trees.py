@@ -66,7 +66,8 @@ def main():
     with open(args.input_fp, "r") as f, open(args.out_fp, "w") as fout:
         for line in file_tqdm(f):
             dp = json.loads(line.strip())
-            print(json.dumps(convert(dp)), file=fout)
+            json.dump(convert(dp), fout)
+            fout.write('\n')
     logging.info("Wrote dps to: {}".format(args.out_fp))
 
 

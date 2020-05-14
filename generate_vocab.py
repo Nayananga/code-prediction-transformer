@@ -13,9 +13,7 @@ from collections import Counter
 
 from utils import file_tqdm, get_dfs
 
-
 logging.basicConfig(level=logging.INFO)
-
 
 UNK = "<unk_token>"
 PAD = "<pad_token>"
