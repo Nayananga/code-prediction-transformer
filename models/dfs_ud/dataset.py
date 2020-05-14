@@ -9,7 +9,7 @@ import logging
 import os
 import pickle
 import torch
-from dataset.dataset import BaseDataset, BaseSetup
+from dataset import BaseDataset, BaseSetup
 
 
 logging.basicConfig(level=logging.INFO)
