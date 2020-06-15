@@ -12,7 +12,6 @@ import os
 
 from utils import file_tqdm, separate_dps
 
-
 logging.basicConfig(level=logging.INFO)
 
 
@@ -110,7 +109,7 @@ def main():
                     if args.id_type in {"type", "all"}:
                         ids.update(get_type_ids(ast))
 
-                    json.dump(ids, fp=fout) 
+                    json.dump(ids, fp=fout)
                     fout.write("\n")
     logging.info("Wrote to: {}".format(args.out_fp))
 

@@ -3,13 +3,12 @@ import json
 import os
 import pickle
 import random
-import re
 from collections import defaultdict
-from itertools import chain, combinations, product
+from itertools import chain, product
 
-from utils import get_ancestors, get_terminal_nodes, parallelize, tokenize
 from tqdm import tqdm
 
+from utils import get_terminal_nodes, tokenize
 
 PLACEHOLDER = "<placeholder_token>"
 UNK = "<unk_token>"
@@ -54,7 +53,7 @@ def extract_paths(ast, max_length):
                     i_child_half_paths = child_to_half_paths[i_child]
                     j_child_half_paths = child_to_half_paths[j_child]
                     for i_half_path, j_half_path in product(
-                        i_child_half_paths, j_child_half_paths
+                            i_child_half_paths, j_child_half_paths
                     ):
                         path_len = len(i_half_path) + len(j_half_path) + 1
                         if path_len > max_length:
@@ -78,7 +77,7 @@ def get_all_paths(ast, id_type, max_path_len, max_num_paths):
         nodes = get_leaf_nodes(ast, id_type)
     if not nodes:
         return []
-    
+
     all_paths = extract_paths(ast, max_path_len)
     ast_values = [get_value(i) for i in ast]
     terminal_words = [get_value(ast[i]) for i in get_terminal_nodes(ast)]

@@ -9,14 +9,11 @@ import argparse
 import json
 import logging
 import pickle
-import re
 from collections import Counter
 
 from utils import get_terminal_nodes, file_tqdm, tokenize
 
-
 logging.basicConfig(level=logging.INFO)
-
 
 UNK = "<unk_token>"
 PAD = "<pad_token>"

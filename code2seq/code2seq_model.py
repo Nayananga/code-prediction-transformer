@@ -31,7 +31,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-
 class EmbeddingAttentionLayer(nn.Module):
     def __init__(self, dim: int) -> None:
         super().__init__()
@@ -52,16 +51,16 @@ class EmbeddingAttentionLayer(nn.Module):
 
 class Code2SeqModel(nn.Module):
     def __init__(
-        self,
-        token_vocab_size: int,
-        subtoken_vocab_size: int,
-        output_vocab_size: int,
-        token_pad_idx: int,
-        subtoken_pad_idx: int,
-        loss_fn: nn.Module,
-        n_embd: int = 128,
-        rnn_dropout: float = 0.5,
-        embed_dropout: float = 0.25,
+            self,
+            token_vocab_size: int,
+            subtoken_vocab_size: int,
+            output_vocab_size: int,
+            token_pad_idx: int,
+            subtoken_pad_idx: int,
+            loss_fn: nn.Module,
+            n_embd: int = 128,
+            rnn_dropout: float = 0.5,
+            embed_dropout: float = 0.25,
     ):
         super().__init__()
         self.subtoken_embedding = nn.Embedding(

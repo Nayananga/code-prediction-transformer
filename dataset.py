@@ -11,11 +11,10 @@ import os
 import pickle
 
 import torch
+
 import utils
 
-
 logging.basicConfig(level=logging.INFO)
-
 
 UNK = "<unk_token>"
 PAD = "<pad_token>"
@@ -23,7 +22,7 @@ PAD = "<pad_token>"
 
 class BaseSetup(object):
     def __init__(
-        self, base_dir, fp, ids_fp, max_vocab=100000, mode="train"
+            self, base_dir, fp, ids_fp, max_vocab=100000, mode="train"
     ):
         super().__init__()
         if mode not in {"train", "test"}:
@@ -51,7 +50,7 @@ class BaseSetup(object):
         # convert
         if not os.path.exists(self.filepaths["conv"]):
             with open(filtered_fp, "r") as fin, open(
-                self.filepaths["conv"], "w"
+                    self.filepaths["conv"], "w"
             ) as fout:
                 for line in utils.file_tqdm(fin):
                     line = json.loads(line.strip())

@@ -39,9 +39,9 @@ import torch.nn as nn
 
 def gelu(x):
     return (
-        0.5
-        * x
-        * (1 + torch.tanh(math.sqrt(2 / math.pi) * (x + 0.044715 * torch.pow(x, 3))))
+            0.5
+            * x
+            * (1 + torch.tanh(math.sqrt(2 / math.pi) * (x + 0.044715 * torch.pow(x, 3))))
     )
 
 
@@ -76,7 +76,7 @@ class LayerNorm(nn.Module):
 
 class Attention(nn.Module):
     def __init__(
-        self, nx, n_ctx, n_head, scale=False, rel_vocab_size=None
+            self, nx, n_ctx, n_head, scale=False, rel_vocab_size=None
     ):
         super(Attention, self).__init__()
         n_state = nx
@@ -100,7 +100,7 @@ class Attention(nn.Module):
         if self.scale:
             w = w / math.sqrt(v.size(-1))
         nd, ns = w.size(-2), w.size(-1)
-        b = self.bias[:, :, ns - nd : ns, :ns]
+        b = self.bias[:, :, ns - nd: ns, :ns]
         w = w * b - 1e10 * (1 - b)
 
         # add in more tree structure
@@ -155,13 +155,13 @@ class MLP(nn.Module):
 
 class Block(nn.Module):
     def __init__(
-        self,
-        n_ctx,
-        n_head,
-        n_embd,
-        layer_norm_epsilon,
-        scale=False,
-        rel_vocab_size=None,
+            self,
+            n_ctx,
+            n_head,
+            n_embd,
+            layer_norm_epsilon,
+            scale=False,
+            rel_vocab_size=None,
     ):
         super(Block, self).__init__()
         self.ln_1 = LayerNorm(n_embd, std_eps=layer_norm_epsilon)
@@ -181,15 +181,15 @@ class Block(nn.Module):
 
 class GPT2Model(nn.Module):
     def __init__(
-        self,
-        vocab_size,
-        n_layer,
-        n_embd,
-        n_ctx,
-        n_head,
-        layer_norm_epsilon,
-        root_paths,
-        rel_vocab_size,
+            self,
+            vocab_size,
+            n_layer,
+            n_embd,
+            n_ctx,
+            n_head,
+            layer_norm_epsilon,
+            root_paths,
+            rel_vocab_size,
     ):
         super(GPT2Model, self).__init__()
         self.n_layer = n_layer
@@ -241,16 +241,16 @@ class GPT2LMHead(nn.Module):
 
 class TransformerModel(nn.Module):
     def __init__(
-        self,
-        vocab_size,
-        loss_fn,
-        n_layer,
-        n_embd,
-        n_ctx,
-        n_head,
-        layer_norm_epsilon,
-        root_paths=False,
-        rel_vocab_size=None,
+            self,
+            vocab_size,
+            loss_fn,
+            n_layer,
+            n_embd,
+            n_ctx,
+            n_head,
+            layer_norm_epsilon,
+            root_paths=False,
+            rel_vocab_size=None,
     ):
         super(TransformerModel, self).__init__()
         self.transformer = GPT2Model(
@@ -272,7 +272,7 @@ class TransformerModel(nn.Module):
                 nn.init.xavier_uniform_(p)
 
     def forward(
-        self, x, y, ext=None, rel=None, paths=None, return_loss=False
+            self, x, y, ext=None, rel=None, paths=None, return_loss=False
     ):
         hidden_states = self.transformer(x, rel, paths)
         y_pred = self.lm_head(hidden_states)
@@ -306,7 +306,7 @@ class LSTMModel(torch.nn.Module):
                 nn.init.xavier_uniform_(p)
 
     def forward(
-        self, x, y, ext=None, rel=None, paths=None, return_loss=False
+            self, x, y, ext=None, rel=None, paths=None, return_loss=False
     ):
         embed = self.embedding(x)  # bs, max_len, n_embd
         self.lstm.flatten_parameters()

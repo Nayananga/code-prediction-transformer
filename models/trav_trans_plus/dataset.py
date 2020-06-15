@@ -8,9 +8,10 @@
 import logging
 import os
 import pickle
-import torch
-from dataset import BaseDataset, BaseSetup
 
+import torch
+
+from dataset import BaseDataset, BaseSetup
 
 logging.basicConfig(level=logging.INFO)
 UNK = "<unk_token>"

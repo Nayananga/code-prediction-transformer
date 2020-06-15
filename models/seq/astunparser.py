@@ -11,7 +11,6 @@ import sys
 import six
 from six import StringIO
 
-
 # Large float and imaginary literals get turned into infinities in the AST.
 # We unparse those infinities to INFSTR.
 INFSTR = "1e" + repr(sys.float_info.max_10_exp + 1)
@@ -804,7 +803,7 @@ class Unparser:
         # is an integer literal then we need to either parenthesize
         # it or add an extra space to get 3 .__abs__().
         if isinstance(
-            t.value, getattr(ast, "Constant", getattr(ast, "Num", None))
+                t.value, getattr(ast, "Constant", getattr(ast, "Num", None))
         ) and isinstance(t.value.n, int):
             self.write(" ")
         self.write(".")

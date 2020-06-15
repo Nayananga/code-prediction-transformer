@@ -12,7 +12,6 @@ import os
 
 from utils import get_dfs, parallelize, separate_dps
 
-
 logging.basicConfig(level=logging.INFO)
 
 
@@ -32,13 +31,13 @@ def separate_rel_mask(rel_mask, max_len):
     i = half_len
     while i < len(rel_mask) - max_len:
         rel_mask_aug.append(
-            [" ".join(lst.split()[i:-1]) for lst in rel_mask[i + 1 : i + max_len]]
+            [" ".join(lst.split()[i:-1]) for lst in rel_mask[i + 1: i + max_len]]
         )
         i += half_len
     rel_mask_aug.append(
         [
-            " ".join(lst.split()[-(i + 2) : -1])
-            for i, lst in enumerate(rel_mask[-max_len + 1 :])
+            " ".join(lst.split()[-(i + 2): -1])
+            for i, lst in enumerate(rel_mask[-max_len + 1:])
         ]
     )
     return rel_mask_aug
@@ -64,7 +63,7 @@ def get_ud_masks(dp, max_len):
         if i - j >= max_len:
             return "0"
         anc_i = set(ancestors[i])
-        for node in ancestors[j][-(levels[i] + 1) :]:
+        for node in ancestors[j][-(levels[i] + 1):]:
             if node in anc_i:
                 up_n = levels[i] - levels[node]
                 down_n = levels[j] - levels[node]
@@ -148,16 +147,16 @@ def main():
     num_dps = 0
     i = 0
     with open(args.ast_fp, "r") as f, open(args.out_fp, "w") as fout:
-        for _ in range(5):  # divide up into subparts
+        for _ in range(1):  # divide up into subparts
             i += 1
             print("Starting {}".format(i))
-            for _ in range(1000):
+            for _ in range(1):
                 dp = json.loads(f.readline().strip())
                 if len(dp) <= 1:
                     continue
                 data.append(dp)
             print("  > Finished reading: {}".format(len(data)))
-            dps = parallelize(data, get_dp, (args.n_ctx, args.child), n_cores=60)
+            dps = parallelize(data, get_dp, (args.n_ctx, args.child), n_cores=1)
             print("  > Finished getting the datasets")
             for dp in dps:
                 for seq, extended, mask in dp:

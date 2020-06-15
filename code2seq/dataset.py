@@ -9,11 +9,10 @@ import json
 import logging
 
 import torch
+
 import utils
 
-
 logging.basicConfig(level=logging.INFO)
-
 
 UNK = "<unk_token>"
 PAD = "<pad_token>"

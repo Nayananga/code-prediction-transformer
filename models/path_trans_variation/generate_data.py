@@ -10,8 +10,7 @@ import json
 import logging
 import os
 
-from utils import file_tqdm, get_dfs, separate_dps
-
+from utils import file_tqdm
 
 logging.basicConfig(level=logging.INFO)
 
@@ -36,8 +35,8 @@ def get_dps(ast, max_len):
     aug_leaf_ids = [leaf_ids[:max_len]]
     i = half_len
     while i < len(leaf_tokens) - max_len:
-        aug_tokens.append([leaf_tokens[i : i + max_len], half_len])
-        aug_leaf_ids.append(leaf_ids[i : i + max_len])
+        aug_tokens.append([leaf_tokens[i: i + max_len], half_len])
+        aug_leaf_ids.append(leaf_ids[i: i + max_len])
         i += half_len
     idx = max_len - (len(leaf_tokens) - (i + half_len))
     aug_tokens.append([leaf_tokens[-max_len:], idx])

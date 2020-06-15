@@ -12,10 +12,9 @@ import logging
 import os
 from collections import namedtuple
 
-import six
-from utils import file_tqdm, separate_dps
-from models.source_code.astunparser import Unparser
+from models.seq.astunparser import Unparser
 
+from utils import file_tqdm, separate_dps
 
 SrcASTToken = namedtuple("SrcASTToken", "text type")
 logging.basicConfig(level=logging.INFO)

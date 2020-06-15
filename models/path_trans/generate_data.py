@@ -12,7 +12,6 @@ import os
 
 from utils import file_tqdm
 
-
 logging.basicConfig(level=logging.INFO)
 
 
@@ -39,7 +38,7 @@ def get_ancestors(ast):
 
 
 def get_root_paths(ancestors, leaf_ids, max_path_len):
-    return [ancestors[i][1 :max_path_len + 1] for i in leaf_ids]
+    return [ancestors[i][1:max_path_len + 1] for i in leaf_ids]
 
 
 def get_dps(ast, max_len, max_path_len):
@@ -60,9 +59,9 @@ def get_dps(ast, max_len, max_path_len):
     while i < len(leaf_tokens) - max_len:
         aug_dps.append(
             [
-                leaf_tokens[i : i + max_len],
+                leaf_tokens[i: i + max_len],
                 half_len,
-                get_root_paths(ancestors, leaf_ids[i : i + max_len], max_path_len),
+                get_root_paths(ancestors, leaf_ids[i: i + max_len], max_path_len),
             ]
         )
         i += half_len

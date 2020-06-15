@@ -12,7 +12,6 @@ import os
 
 from utils import file_tqdm
 
-
 logging.basicConfig(level=logging.INFO)
 
 
