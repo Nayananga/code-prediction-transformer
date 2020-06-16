@@ -19,12 +19,17 @@ to generate vocabulary according to the paper run
 python generate_vocab.py -i /PATH/TO/FILE/new_python100k_train.json -o /PATH/TO/OUTPUT/FILE/new_python100k_train.pkl -t ast
 ```
 ## Step 5
-to generate data according to the README.md
+to generate dataset according to the each model
+* trav_trans_plus
 ```
-python -m models.dfs_ud.dataset -a /PATH/TO/FILE/new_python100k_train.json -o /PATH/TO/OUTPUT/FILE/new_new_python100k_train.txt
+python models/trav_trans_plus/dataset.py -a /PATH/TO/INPUT/FILE/step3.json -o /PATH/TO/OUTPUT/FILE/step5.txt
+```
+* trav_trans
+```
+python models/trav_trans/dataset.py -a /PATH/TO/FILE/step.json -o /PATH/TO/OUTPUT/FILE/step.txt
 ```
 # Step 6
 to generate ast ids according to the README.md
 ```
-python -m models.dfs.generate_ast_ids -a /PATH/TO/FILE/new_python100k_train.json -o /PATH/TO/OUTPUT/FILE/generated_ids.txt all
+python models/trav_trans/generate_ast_ids -a /PATH/TO/FILE/step3.json -o /PATH/TO/OUTPUT/FILE/step6.txt
 ```
